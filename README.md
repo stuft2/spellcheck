@@ -7,7 +7,8 @@ A program that checks spelling. The input to the program is a dictionary file co
 ## Prerequisites
 1. [Install Node.js](https://nodejs.org)
 2. Install dependencies: `npm ci`
-3. Link locally `npm link`
+3. Build distribution files: `npm run build`
+4. Link locally `npm link`
 
 ## Usage
 ```sh
