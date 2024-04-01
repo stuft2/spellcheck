@@ -53,7 +53,7 @@ export class Dictionary {
       }
     }
     if (errors.length > 0) {
-      throw new AggregateError(errors, 'Oops! Found some mistakes in your file!')
+      throw new AggregateError(errors, 'Oops! Found some misspelled words in your file!')
     }
     return true
   }

@@ -29,7 +29,7 @@ export class TokenError extends Error {
       title += ` Did you mean one of these? ${suggestions.join(', ')}`
     }
     const context = line + '\n' + new Array(charIndex).fill(' ').join('') + new Array(token.value.length).fill('^').join('')
-    const message = `${title}\n\n${context}`
+    const message = `${title}\n${context}`
 
     super(message)
   }

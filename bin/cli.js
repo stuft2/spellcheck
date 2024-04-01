@@ -12,5 +12,17 @@ const cli = meow(`
   importMeta: import.meta
 })
 
-Dictionary.from(cli.input.at(0))
-  .spellcheck(cli.input.at(1))
+try {
+  console.info() // adding an extra line in the console for readability
+  Dictionary.from(cli.input.at(0)).spellcheck(cli.input.at(1))
+  console.info(`Looks perfect! ✨`)
+} catch (e) {
+  if (!(e instanceof AggregateError)) {
+    // An unknown error occurred
+    throw e
+  }
+  for (const error of e.errors) {
+    console.error(error.message, '\n')
+  }
+}
+
