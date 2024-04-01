@@ -2,7 +2,8 @@ import path from 'node:path'
 import fs from 'node:fs'
 import { Token } from './Token.js'
 
-const LETTER_RX = /[a-z-]/
+const LOWERCASE_RX = /[a-z-]/
+const UPPERCASE_RX = /[A-Z]/
 const NEW_LINE = '\n'
 
 export class Lexer {
@@ -15,16 +16,15 @@ export class Lexer {
   readonly tokens: Token[] = []
   constructor (public readonly raw: string) {
     // Optimize by converting to lowercase
-    const text = raw.toLowerCase()
     let line = 1; let character = 0; let token: Token | null = null
 
-    for (const char of text) {
+    for (const char of raw) {
       character++
-      if (LETTER_RX.test(char)) {
+      if (LOWERCASE_RX.test(char.toLowerCase())) {
         // Found a letter
         if (token == null) {
           // Initialize a new, empty token
-          token = new Token('', line, character)
+          token = new Token('', line, character, UPPERCASE_RX.test(char))
         }
         token.value += char
         continue

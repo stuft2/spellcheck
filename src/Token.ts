@@ -1,8 +1,9 @@
 export class Token {
   constructor (
     public value: string = '',
-    public line: number,
-    public character: number = 0
+    public line: number = 1,
+    public character: number = 0,
+    public properNoun: boolean = false
   ) {
     if (line < 0) {
       throw TypeError('Line number cannot be less than zero.')

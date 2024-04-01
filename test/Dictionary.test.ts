@@ -56,6 +56,11 @@ test('should suggests words that are similar', t => {
   t.true(suggestions.every(suggestion => suggestion.startsWith('miss')), 'Every suggestion should start with miss')
 })
 
+test('should allow proper nouns', t => {
+  const { dictionary } = t.context
+  t.notThrows(() => dictionary.spellcheck('./assets/swallow.txt'))
+})
+
 test('should spellcheck a file with a mistake', t => {
   const { dictionary } = t.context
   t.throws(() => dictionary.spellcheck('./assets/spellcheck.txt'), { instanceOf: AggregateError })

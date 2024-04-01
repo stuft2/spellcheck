@@ -42,6 +42,10 @@ export class Dictionary {
     const lexer = Lexer.from(file)
     const errors: TokenError[] = []
     for (const token of lexer.tokens) {
+      if (token.properNoun) {
+        // Skip spellchecking proper nouns
+        continue
+      }
       const found = this.lookup(token.value) >= 0
       if (!found) {
         const suggestions = this.suggest(token.value)
